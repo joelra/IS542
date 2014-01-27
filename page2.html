@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Joel Anderson - The Man, The Myth, The Legend</title>
+		<link rel="stylesheet" type="text/css" href="">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<section>
+			<div id="wrapper">
+			<!-- Navigation Bar -->
+				<nav id="navigation">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="#">PHP Information</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+				</nav>
+
+				<div class="main_content">
+					<section>
+						<h1>PHP - Coding the Web</h1>
+						<p>
+							As with any computer language available, it is not expected that PHP will be learned overnight. Nor do I consider myself an expert on PHP. Rather, this article will provide an intrduction into the langauage, showcase basic use, and outline possible advantages it has over other client-side programming languages.
+						</p>
+						
+						<section>
+							<h2>Introduction</h2>
+							<p>
+								PHP is a server-side scripting language, standing for PHP: Hypertext Preprocessor. It is mainly used for web development, but has grown in popularity to be used as a general-purpose programming language. According to <cite>W3 Techs</cite>:
+									<blockquote cite="http://w3techs.com/technologies/details/pl-php/all/all">
+										<p>PHP is used by 81.6% of all the websites whose server-side programming language we know.</p>
+									</blockquote>
+								That's pretty amazing to think of, that so many websites employee this server-side language. Because it is so popular, it is almost guaranteed that a developer will have a brush with the language at some point in their lives. Let's look at the basics of it.
+							</p>
+						</section>
+
+						<section>
+							<h2>Variables</h2>
+							<p>
+								Note that php code must be contained within <pre>&lt;?php ?&gt;</pre> tags. To define a variable, it must be in the $[variable name] format. PHP actually supports eight primitive types. They are as follows:
+							</p>
+
+							<h3>Scalar Types</h3>
+							<h4>boolean</h4> - This is the simplest type. It either represents TRUE or FALSE.
+								<p>To set something to true, you may run the following code:</p>
+								<pre><code>
+								$foo = True; // assigns foo to TRUE
+								</code></pre>
+
+							<h4>integer</h4> - Common to the other integer types that exist in other languages, this represents a number. Can be decimal, negative, octal, hexadecimal, or even binary.
+								<pre><code>
+									$decimalNumber = 123;
+									$negativeNumber = -12;
+									$octalNumber = 0173; // equals 123 in decimal
+									$hexadecimalNumber = 0x7B; // equals 123 in decimal
+									$binaryNumber = 0b1111011; // equals 123 in decimal
+								</code></pre>
+							<h4>float</h4> - These are floating point numbers. They are sometimes referred to as floats, doubles, or real numbers. Note that floating point numbers have a limited precision. Don't use a floating number for comparisons for equality.
+								<pre><code>
+									$floatNum1 = 1.234;
+									$floatNum2 = 1.2e3;
+									$floatNum3 = 4E-5;
+								</code></pre>
+
+							<h4>string</h4> - A string is a sequence or series of characters. PHP can only support a 256-character set. This means that Unicode is not supported. It is interesting to note that a string in PHP can be as large as 2GB in size. That's a pretty impressive string if it's 2GB.
+							<p>A string can be specified by either single quotes or double quotes. With double quotes though, variable names will expand to be their value, instead of just printing out the variable name with the $.</p>
+								<pre><code>
+									$simpleString = 'Hello there.'
+									$doubleQuoteString = "My simpleString variable says = $simpleString" // Will output: My simpleString variable says = Hello there.
+								</code></pre>
+
+							<h3>Compound Types</h3>
+							<h4>array</h4> - An array in PHP is an ordered map, similar to java maps with values and keys. An 'array' in PHP can then be treated either like an array, hash table, dictionary, collection, stack, or even a queue. It allows for a vaired amount of flexability. Defining an array is fairly easy to do in PHP.
+							<pre><code>
+								$array = array(
+									"key1" => "value1",
+									"key2" => "value2",
+								);
+
+								// As of PHP5.4, arrays are now defined with []
+								$updatedArray = [
+									"key1" => "value1",
+									"key2" => "value2",
+								];
+							</code></pre>
+							<p>You'll notice that unlike javascript, PHP likes having the commas at the end of the last item in an array. Also, for the keys if a float is defined it will be casted to an integer and truncated to be rounded down to the nearest whole number. If a boolean is used, true will acutally be stored as a 1 and false stored as a 0. Finally, defining Null as a key will cause it to an empty string, becoming just "" for the key. Arrays and objects cannot be uased as keys.</p>
+							
+							<h4>object</h4> - An object is just as it sounds. It is a representation of something that can hold either functions or values or both. You created an object by using the <pre>class</pre> keyword and then calling new to instantiate that class.
+							<pre><code>
+								class pandaBear
+								{
+									function roar()
+									{
+										echo "RAWR!"
+									}
+								}
+
+								$myPandaObject = new pandaBear;
+								$myPandaObject->roar(); // Will ouput RAWR!
+							</code></pre>
+
+							<h3>Special Types</h3>
+							<h4>resource</h4> This is a data type that is a little difficult to grasp. Right from <cite><a href="http://PHP.net"></a>>PHP.net</a></cite> it states <q>A resource is a special variable, holding a reference to an external resource.</q> This could include maybe a database connection, opened files, image canvas areas, etc.
+
+							<h4>NULL</h4> - This special type just represents a variable with no value.
+							<pre><code>
+								$nullVar = NULL;
+							</code></pre>
+						</section>
+
+						<section>
+							<h2>Logic Statments</h2>
+							<p>PHP is similar to other language in that it has the capability for logical statments to be executed. These include if statments, elseif, and switch statments. The following shows an example of these three.</p>
+							<pre><code>
+								$a = 2;
+								$b = 3;
+								$switchLogic = "";
+
+								if ($a > $b)
+								{
+									echo "$a is greater than $b."; // Will not be executed since $a (2) is not larger than $b (3)
+								} 
+								elseif ($a == $b) 
+								{
+									echo "$a is equal to $b."; // Will not be executed since $a is not equal to $b
+								} 
+								else 
+								{
+									$switchLogic = "Less Than";
+								}
+
+								switch($switchLogic)
+								{
+									case "Greater Than":
+										echo "$a is greater than $b";
+										break;
+									case "Less Than":
+										echo "$a is less than $b"; // This is the statement that will be ran
+										break;
+									case "Equal To":
+										echo "$a is equal to $b";
+										break;
+									default:
+										echo "$a is not greater than, less than, or equal to $b. Something is not right...";
+								}
+							</code></pre>
+							<p>As you can see from the code, this is similar to most programming/scripting languages.</p>
+						</section>
+
+						<section>
+							<h2>Loops</h2>
+							<p>
+								PHP employes the common loops found in Java: for, foreach, while, and do while.
+							</p>
+							<p>
+								The for loop is probably the most complex loop you'll use in PHP, though it's super simple. It has the syntax of 
+								<pre>for (expression; expression; expression) {
+								statement
+								}</pre>
+								The first expression is executed at the beginning of the loop. This is the counter that will be used for the loop and the starting point.
+
+								The second expression is the evaluated at each iteration of the loop. If the expression is true, then the loop continues and the statement within the loop is executed. This expression is used to place a cap on the counter, telling it to run until it reaches a certain point.
+
+								Finally, at the end of each iteration, the third expression is executed. This is used to increase or decrease the counter.
+							</p>
+							<pre><code>
+								for ($i = 1; $i <= 10; $i++)
+								{
+									echo $i;
+								}
+								// This code wil print out all the numbers 1 to 10.
+							</code></pre>
+							
+							<p>
+								Related to the for loop is the foreach loop, but provides an easy way to iterate over arrays. Note that the foreach loop will only work on arrays and objects. An error will be issued if it's used on anything other than an array or object.
+							</p>
+							<pre><code>
+								$myArray = array(1, 2, 3, 4);
+								foreach ($myArray as $value)
+								{
+									echo "Value of array: $value";
+								}
+								// Will outprint:
+								// Value of array: 1
+								// Value of array: 2
+								// Value of array: 3
+								// Value of array: 4
+							</code></pre>
+
+							<p>
+								The while loop for PHP is the easiest loop. The loop will execute as long as the expression that is being evalutated is true. Once the expression becomes false, the statement will terminate it's execution.
+
+								If the statement is false from the beginning, the loop won't even run.
+							</p>
+							<pre><code>
+								$myVar = 1;
+								while ($myVar = 1)
+								{
+									// Execute Some Code...
+								}
+							</code></pre>
+
+							<p>
+								The difference between the do wile loop and the while loop is that the code to be executed within the loop will be ran at least one time. This is irregardless of the state of the expression: if it's true or not. 
+							</p>
+							<pre><code>
+								$myVar =1;
+								do
+								{
+									// Some code...
+								} while ($myVar = 2); // This loop will still run at least once.
+							</code></pre>
+						</section>
+
+						<section>
+							<h2>Outprinting</h2>
+							<p>
+								There are several ways to outprint information to display to the user in PHP. The most common, and what has been used in all the previous examples of code, is echo. The other is print.
+							</p>
+							<p>
+								The main differences between echo and print are that echo is slightly faster. The biggest difference though is that print is not a language construct, but echo is. This means that print behaves like a function.
+							</p>
+							<p>
+								Finally, echo can take multiple parameters, whereas print can only take one parameter.
+							</p>
+							<pre><code>
+								echo "my numbers ", 1, 2, 3; // Will display my numbers 123
+
+								print ("my numbers 123"); // Will display my numbers 123
+								print ("my numbers", "123") // Will return a fatal error
+							</code></pre>
+						</section>
+
+						<section>
+							<h2>Analysis of PHP</h2>
+							<h3>Advantages</h3>
+								<p>
+									There are a number of advantages that PHP has when compared to other languages. Here's a short list (taken from <cite><a href="http://www.eschrade.com/page/10-reasons-to-use-php-for-your-mobile-project/">ESchrade</a></cite> and <cite><a href="http://vandelaydesign.com/blog/web-development/advantages-of-php/">Vandelay Design</a></cite>):
+								</p>
+									<ul class="advantage_list">
+										<p><li>Easy to Scale</li> - PHP is built around a share-nothing architecutre. That means that if more servers need to be added, they can be. There is little configuration that needs to even be done to accomplish that.</p>
+										<p><li>Frameworks</li> - Because PHP ha become so widely used, there are a large number of frameworks available. These frameworks make coding PHP even more easy to support anything from a large project, down to a light weight project.</p>
+										<p><li>Dynamic Typing</li> - This is considered a strength since it allows variables to be given a ceratain value type, and then changed whenever. It makes coding quicker, and can even lessen error condition to check for.</p>
+										<p><li>Support</li> - The PHP community is HUGE! Because there are so many that use the language, there a lot of blogs and support forms dedicated to PHP. It's not that hard to find solutions when you reach a snag. And the PHP documentation is well written.</p>
+										<p><li>Widely Used - This is related to the previous point, but PHP is everywhere. It may not be the prettiest code, but it's widely used. This means that there a lot of opportunites for using PHP or learning more about it.</li></p>
+									</ul>
+								<p>
+									The question then comes up, when should I use PHP? It's not in every case that PHP should be used. It's like any language. There are instances when C# works better than C++, and vice versa. So when do you use PHP? Well, one instance is when you want code to be as free as possible and run on nearly anything in the world. PHP is almost your only answer. If you need something also farily dynamic, PHP is an option to consider.
+								</p>
+								<p>
+									Having said all this, remember that PHP isn't the only thing that is out there. There are disadvantages to PHP, just like with any language. There are a large number of developers who give PHP a bad rap, just because it's different. But don't let that stop you from using it, if you feel the need to incorporate it into your website.
+								</p>
+						</section>
+
+						<section>
+							<h2>Conclusion</h2>
+							<p>
+								Hopefully this gives a good snapshot of PHP, and shows some of the basics to get a slight understanding for the language. There is no way that all the information on PHP could be contained in this webpage, or on any single website, so go out there and learn more.
+							</p>
+						</section>
+					</section>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
